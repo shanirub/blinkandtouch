@@ -5,6 +5,8 @@ lcd = lcd160cr.LCD160CR('X')
 
 from random import randint
 
+SIDE_LENGTH = 70
+
 while True:
-    lcd.rect(randint(0, lcd.w), randint(0, lcd.h), randint(10, 30), randint(10, 30))
-    pyb.delay(200)
+    lcd.rect(randint(0, lcd.w - SIDE_LENGTH), randint(0, lcd.h - SIDE_LENGTH), SIDE_LENGTH, SIDE_LENGTH)
+    pyb.delay(500)
