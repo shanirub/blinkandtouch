@@ -5,7 +5,7 @@ lcd = lcd160cr.LCD160CR('X')
 accel = pyb.Accel()
 
 SENSITIVITY = 2                         # minimal sensitivity for the accel
-WIDTH = 4                               # food and moving rect width and height
+WIDTH = 12                               # food and moving rect width and height
 
 bg = lcd.rgb(255, 255, 255)             # background color = white
 rect_fill_color = lcd.rgb(255, 0, 127)  # moving rect fill color = pink
@@ -44,7 +44,10 @@ while True:
         lcd.set_pen(food_color, food_color)
         lcd.rect(int(food_x), int(food_y), WIDTH, WIDTH)
 
-    if (rect_x == food_x and rect_y == food_y):
+    # if (rect_x >= food_x and rect_x <= food_x + WIDTH and rect_y >= food_y and rect_y <= food_y):
+    if abs(rect_x - food_x) < WIDTH and abs(rect_y - food_y) < WIDTH:
+        lcd.set_pen(rect_line_color, rect_fill_color)
+        lcd.erase()
         lcd.write("very good")
         break
 
